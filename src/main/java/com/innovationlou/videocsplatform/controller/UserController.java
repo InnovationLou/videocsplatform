@@ -1,7 +1,6 @@
 package com.innovationlou.videocsplatform.controller;
 
 
-import com.innovationlou.videocsplatform.service.ICourseService;
 import com.innovationlou.videocsplatform.service.ILoginService;
 import com.innovationlou.videocsplatform.service.IUserService;
 import com.innovationlou.videocsplatform.vo.JsonResult;
@@ -12,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * <p>
@@ -29,9 +29,6 @@ public class UserController extends BaseController{
     private static final Logger logger= LogManager.getLogger(UserController.class);
 
     @Resource
-    ICourseService courseService;
-
-    @Resource
     IUserService userService;
 
     @Resource
@@ -42,13 +39,23 @@ public class UserController extends BaseController{
     @Transactional
     public JsonResult login(@RequestParam("username") String username,
                             @RequestParam("password") String password){
+        logger.info("用户登录:"+username+";登录时间:"+new Date());
         return loginService.login(username,password);
     }
 
+    /**
+     * 账户余额由管理员后台充值
+     * @param username
+     * @param password
+     * @param email
+     * @return
+     */
     @ApiOperation("注册")
     @PutMapping("/reg")
-    public JsonResult register(){
+    public JsonResult register(@RequestParam("username") String username,@RequestParam("password")String password,
+                               @RequestParam("email") String email){
         return null;
     }
+
 }
 

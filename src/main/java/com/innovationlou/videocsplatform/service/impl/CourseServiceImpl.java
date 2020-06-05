@@ -6,10 +6,7 @@ import com.innovationlou.videocsplatform.mapper.CourseMapper;
 import com.innovationlou.videocsplatform.service.ICourseService;
 import com.innovationlou.videocsplatform.util.ControllerUtil;
 import com.innovationlou.videocsplatform.vo.JsonResult;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -28,14 +25,8 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     CourseMapper courseMapper;
 
     @Override
-    @Transactional
     public JsonResult getAllCourses() {
-        Subject subject = SecurityUtils.getSubject();
-        if (subject.isAuthenticated()) {
-            return ControllerUtil.getDataResult(courseMapper.selectAll());
-        } else {
-            return ControllerUtil.getDataResult("未登录");
-        }
-        //return ControllerUtil.getDataResult(courseMapper.selectAll());
+        //Subject subject = SecurityUtils.getSubject();
+        return ControllerUtil.getDataResult(courseMapper.selectAll());
     }
 }
