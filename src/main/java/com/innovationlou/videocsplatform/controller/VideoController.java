@@ -4,7 +4,6 @@ package com.innovationlou.videocsplatform.controller;
 import com.innovationlou.videocsplatform.service.IVideoService;
 import com.innovationlou.videocsplatform.vo.JsonResult;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
@@ -48,7 +47,7 @@ public class VideoController extends BaseController{
     @PutMapping("/record")
     @RequiresAuthentication
     public JsonResult recordPlay(@RequestHeader("Authorization") String token,
-                                 @ApiParam("播放视频id")Integer vId){
+                                 Integer vId){
         return videoService.recordPlay(token,vId);
     }
 }

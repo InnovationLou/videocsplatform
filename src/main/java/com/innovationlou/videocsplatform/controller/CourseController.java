@@ -4,7 +4,6 @@ package com.innovationlou.videocsplatform.controller;
 import com.innovationlou.videocsplatform.service.ICourseService;
 import com.innovationlou.videocsplatform.vo.JsonResult;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
@@ -38,10 +37,10 @@ public class CourseController extends BaseController{
     }
 
     @ApiOperation("购买课程")
-    @PutMapping("/buy")
+    @PostMapping("/buy")
     @RequiresAuthentication
     public JsonResult buyCourse(@RequestHeader("Authorization") String token,
-                                @ApiParam("课程id") Integer courseId){
+                                Integer courseId){
         return courseService.buyCourse(token,courseId);
     }
 

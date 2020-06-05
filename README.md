@@ -41,3 +41,4 @@ pwd=123
     
     - 完成所有业务接口
     - 添加控制器通知RestControllerAdvice统一处理前端异常信息
+    - /videocsplatform/course/course某个课程信息包含分P播放信息   接口存在bug
