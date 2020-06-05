@@ -9,6 +9,7 @@ import com.innovationlou.videocsplatform.vo.JsonResult;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -27,6 +28,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     CourseMapper courseMapper;
 
     @Override
+    @Transactional
     public JsonResult getAllCourses() {
         Subject subject = SecurityUtils.getSubject();
         if (subject.isAuthenticated()) {

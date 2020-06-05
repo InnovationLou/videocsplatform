@@ -2,11 +2,13 @@ package com.innovationlou.videocsplatform.controller;
 
 
 import com.innovationlou.videocsplatform.service.ICourseService;
+import com.innovationlou.videocsplatform.service.ILoginService;
 import com.innovationlou.videocsplatform.service.IUserService;
 import com.innovationlou.videocsplatform.vo.JsonResult;
 import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -32,11 +34,15 @@ public class UserController extends BaseController{
     @Resource
     IUserService userService;
 
+    @Resource
+    ILoginService loginService;
+
     @ApiOperation("登录接口，登陆成功后将token放入headers即可 key:Authorization")
     @PostMapping("/login")
+    @Transactional
     public JsonResult login(@RequestParam("username") String username,
                             @RequestParam("password") String password){
-        return userService.login(username,password);
+        return loginService.login(username,password);
     }
 
     @ApiOperation("注册")

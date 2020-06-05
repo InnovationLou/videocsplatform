@@ -2,6 +2,7 @@ package com.innovationlou.videocsplatform.mapper;
 
 import com.innovationlou.videocsplatform.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.CacheNamespace;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -13,6 +14,7 @@ import org.apache.ibatis.annotations.Select;
  * @author innovationLou
  * @since 2020-06-04
  */
+@CacheNamespace
 public interface UserMapper extends BaseMapper<User> {
 
     @Select("select * from user where username= '${username}'")
