@@ -54,7 +54,7 @@ public class UserController extends BaseController{
     @PutMapping("/reg")
     public JsonResult register(@RequestParam("username") String username,@RequestParam("password")String password,
                                @RequestParam("email") String email){
-        return null;
+        return userService.register(username,password,email);
     }
 
 }

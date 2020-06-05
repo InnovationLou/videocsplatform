@@ -34,14 +34,14 @@ public class VideoController extends BaseController{
     @GetMapping("/{videoId}")
     @RequiresAuthentication
     public JsonResult getOneVideo(@PathVariable Long videoId){
-        return null;
+        return videoService.getOneVideo(videoId);
     }
 
     @ApiOperation("获取播放记录")
     @GetMapping("/history")
     @RequiresAuthentication
     public JsonResult playHistory(@RequestHeader("Authorization") String token){
-        return null;
+        return videoService.playHistory(token);
     }
 
     @ApiOperation("播放退出")
@@ -49,7 +49,7 @@ public class VideoController extends BaseController{
     @RequiresAuthentication
     public JsonResult recordPlay(@RequestHeader("Authorization") String token,
                                  @ApiParam("播放视频id")Integer vId){
-        return null;
+        return videoService.recordPlay(token,vId);
     }
 }
 

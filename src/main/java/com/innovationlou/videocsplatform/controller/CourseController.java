@@ -42,26 +42,34 @@ public class CourseController extends BaseController{
     @RequiresAuthentication
     public JsonResult buyCourse(@RequestHeader("Authorization") String token,
                                 @ApiParam("课程id") Integer courseId){
-        return null;
+        return courseService.buyCourse(token,courseId);
     }
 
     @ApiOperation("获取已购买课程")
     @GetMapping("/bought")
     @RequiresAuthentication
     public JsonResult getBoughtCourses(@RequestHeader("Authorization") String token){
-        return null;
+        return courseService.getBoughtCourses(token);
     }
 
     @ApiOperation("查询某个课程详细信息")
     @GetMapping("/{courseId}")
     public JsonResult getOneCourseInfo(@PathVariable Integer courseId){
-        return null;
+        return courseService.getOneCourseInfo(courseId);
+    }
+
+    @ApiOperation("某个课程信息包含分P播放信息")
+    @GetMapping("/course")
+    @RequiresAuthentication
+    public JsonResult getCoursePlayInfo(@RequestHeader("Authorization") String token,
+                                        Integer courseId){
+        return courseService.getCoursePlayInfo(token,courseId);
     }
 
     @ApiOperation("课程搜索")
     @GetMapping("/search/{keyWord}")
     public JsonResult searchCourse(@PathVariable String keyWord){
-        return null;
+        return courseService.searchCourse(keyWord);
     }
 
 

@@ -2,6 +2,7 @@ package com.innovationlou.videocsplatform.service;
 
 import com.innovationlou.videocsplatform.entity.Video;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.innovationlou.videocsplatform.vo.JsonResult;
 
 /**
  * <p>
@@ -13,4 +14,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IVideoService extends IService<Video> {
 
+    JsonResult getOneVideo(Long videoId);
+
+    JsonResult playHistory(String token);
+
+    JsonResult recordPlay(String token, Integer vId);
 }

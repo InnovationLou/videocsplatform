@@ -38,4 +38,6 @@ pwd=123
     -  修复 mybatis缓存无效以及spring事务无效的bug
     
         >Solve：spring每次的请求都是独立的sqlSession，固一级缓存无法发挥作用，打开全局二级缓存配置，并在UserMapper上配置二级缓存之后即可（每次校验token不需要查库）
-
+    
+    - 完成所有业务接口
+    - 添加控制器通知RestControllerAdvice统一处理前端异常信息

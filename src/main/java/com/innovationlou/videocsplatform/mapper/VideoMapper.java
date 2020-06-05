@@ -1,7 +1,11 @@
 package com.innovationlou.videocsplatform.mapper;
 
-import com.innovationlou.videocsplatform.entity.Video;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.innovationlou.videocsplatform.entity.Video;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +16,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2020-06-04
  */
 public interface VideoMapper extends BaseMapper<Video> {
+
+    @Select("SELECT * FROM video WHERE course_id =${courseId} order by course_P ASC")
+    List<Video> selectVideoByCourseId(@Param("courseId") Integer courseId);
 
 }

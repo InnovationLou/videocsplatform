@@ -15,4 +15,14 @@ import com.innovationlou.videocsplatform.vo.JsonResult;
 public interface ICourseService extends IService<Course> {
 
     JsonResult getAllCourses();
+
+    JsonResult buyCourse(String token, Integer courseId);
+
+    JsonResult getBoughtCourses(String token);
+
+    JsonResult getOneCourseInfo(Integer courseId);
+
+    JsonResult searchCourse(String keyWord);
+
+    JsonResult getCoursePlayInfo(String token,Integer courseId);
 }
