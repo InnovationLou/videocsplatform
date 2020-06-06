@@ -18,6 +18,12 @@ spring:
       additional-paths: src/main/java #重启目录
   profiles:
     active: release
+  thymeleaf:
+    mode: HTML
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/static/,classpath:/resources/,classpath:/META-INF/resources/webjars/
 
 fdfs:
   # socket连接超时时长

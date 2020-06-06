@@ -48,3 +48,5 @@ pwd=123
         - /videocsplatform/course/course
         
     - 添加apache license,添加开发环境和发布环境配置
+
+    - 整合thymeleaf 使用AdminLTE前端模板搭建后台管理系统，完成静态资源映射，配置资源访问
