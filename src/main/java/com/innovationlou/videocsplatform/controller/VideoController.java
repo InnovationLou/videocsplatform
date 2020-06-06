@@ -47,8 +47,9 @@ public class VideoController extends BaseController{
     @ApiOperation("获取视频信息，在线播放视频")
     @GetMapping("/{videoId}")
     @RequiresAuthentication
-    public JsonResult getOneVideo(@PathVariable Long videoId){
-        return videoService.getOneVideo(videoId);
+    public JsonResult getOneVideo(@RequestHeader("Authorization") String token,
+                                  @PathVariable Long videoId){
+        return videoService.getOneVideo(token,videoId);
     }
 
     @ApiOperation("获取播放记录")
@@ -62,7 +63,7 @@ public class VideoController extends BaseController{
     @PutMapping("/record")
     @RequiresAuthentication
     public JsonResult recordPlay(@RequestHeader("Authorization") String token,
-                                 Integer vId){
+                                 Long vId){
         return videoService.recordPlay(token,vId);
     }
 }

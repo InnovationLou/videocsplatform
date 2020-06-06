@@ -16,6 +16,7 @@
 package com.innovationlou.videocsplatform.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.innovationlou.videocsplatform.entity.History;
 import com.innovationlou.videocsplatform.entity.User;
 import com.innovationlou.videocsplatform.entity.Video;
 import com.innovationlou.videocsplatform.mapper.HistoryMapper;
@@ -29,7 +30,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -52,7 +56,21 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
     UserMapper userMapper;
 
     @Override
-    public JsonResult getOneVideo(Long videoId) {
+    @Transactional
+    public JsonResult getOneVideo(String token,Long videoId) {
+        String username= JWTUtil.getUsername(token);
+        User user=userMapper.getUserByUsername(username);
+        Integer userId=user.getId();
+        History history = historyMapper.selectByUserIdAndVId(userId, videoId);
+        if(history == null){
+            history=new History();
+            history.setUserId(userId);
+            history.setVId(videoId);
+            history.setExitTime(new Date());
+            historyMapper.insert(history);
+        }
+        history.setExitTime(new Date());
+        historyMapper.updateById(history);
         return ControllerUtil.getDataResult(videoMapper.selectById(videoId));
     }
 
@@ -62,16 +80,19 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
         String username= JWTUtil.getUsername(token);
         User user=userMapper.getUserByUsername(username);
         Integer userId=user.getId();
-        List<Object> historyResult = historyMapper.getHistoryByUserId(userId);
+        List<Map<String,Object>> historyResult = historyMapper.getHistoryByUserId(userId);
         return ControllerUtil.getDataResult(historyResult);
     }
 
     @Override
-    public JsonResult recordPlay(String token, Integer vId) {
+    @Transactional
+    public JsonResult recordPlay(String token, Long vId) {
         String username= JWTUtil.getUsername(token);
         User user=userMapper.getUserByUsername(username);
         Integer userId=user.getId();
-        historyMapper.updateExitTimeByUserIdAndVId(userId,vId);
+        //java.sql.Date time=new java.sql.Date(System.currentTimeMillis());
+        Timestamp time=new Timestamp(new Date().getTime());
+        historyMapper.updateExitTimeByUserIdAndVId(userId,vId,time);
         return ControllerUtil.getDataResult("已退出视频\tvId="+vId);
     }
 }

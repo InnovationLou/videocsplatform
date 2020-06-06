@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -46,7 +46,7 @@ public class Video implements Serializable {
     private Integer courseP;
 
     @ApiModelProperty(value = "上传时间")
-    private LocalDateTime uploadTime;
+    private Date uploadTime;
 
 
 }

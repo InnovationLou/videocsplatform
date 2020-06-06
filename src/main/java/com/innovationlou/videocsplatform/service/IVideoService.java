@@ -14,9 +14,9 @@ import com.innovationlou.videocsplatform.vo.JsonResult;
  */
 public interface IVideoService extends IService<Video> {
 
-    JsonResult getOneVideo(Long videoId);
+    JsonResult getOneVideo(String token,Long videoId);
 
     JsonResult playHistory(String token);
 
-    JsonResult recordPlay(String token, Integer vId);
+    JsonResult recordPlay(String token, Long vId);
 }
