@@ -42,3 +42,9 @@ pwd=123
     - 完成所有业务接口
     - 添加控制器通知RestControllerAdvice统一处理前端异常信息
     - /videocsplatform/course/course某个课程信息包含分P播放信息   接口存在bug
+    
+- 2020.6.6
+    - 修复业务接口bug
+        - /videocsplatform/course/course
+        
+    - 添加apache license,添加开发环境和发布环境配置
