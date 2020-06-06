@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.innovationLou</groupId>
     <artifactId>videocsplatform</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
     <name>videocsplatform</name>
     <description>Video Course Platform for Spring Boot</description>
 
