@@ -16,4 +16,6 @@ public interface IUserService extends IService<User> {
     User getUserByName(String username);
 
     JsonResult register(String username, String password, String email);
+
+    JsonResult info(String token);
 }

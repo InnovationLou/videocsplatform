@@ -25,4 +25,8 @@ public interface ICourseService extends IService<Course> {
     JsonResult searchCourse(String keyWord);
 
     JsonResult getCoursePlayInfo(String token,Integer courseId);
+
+    JsonResult getFreeCourses();
+
+    JsonResult getPaidCourses();
 }

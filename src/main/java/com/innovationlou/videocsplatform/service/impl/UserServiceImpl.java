@@ -20,6 +20,7 @@ import com.innovationlou.videocsplatform.entity.User;
 import com.innovationlou.videocsplatform.mapper.UserMapper;
 import com.innovationlou.videocsplatform.service.IUserService;
 import com.innovationlou.videocsplatform.util.ControllerUtil;
+import com.innovationlou.videocsplatform.util.JWTUtil;
 import com.innovationlou.videocsplatform.vo.JsonResult;
 import org.apache.commons.lang3.RandomUtils;
 import org.springframework.stereotype.Service;
@@ -49,12 +50,27 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     @Transactional
     public JsonResult register(String username, String password, String email) {
-        Float randomMoney=RandomUtils.nextFloat(50,1000);
-        Integer result = userMapper.insertNewUser(username, password, email, randomMoney);
-        if(result == 1){
-            return ControllerUtil.getDataResult("注册成功,用户名:"+username);
+        Float randomMoney=RandomUtils.nextFloat(500,1000);
+        User user=userMapper.getUserByUsername(username);
+        if(user == null){
+            Integer result = userMapper.insertNewUser(username, password, email, randomMoney);
+            if(result == 1){
+                return ControllerUtil.getDataResult("注册成功,用户名:"+username);
+            }
+        }else {
+            return ControllerUtil.getFalseResultMsgBySelf("用户已存在！");
         }
+
         return ControllerUtil.getFalseResultMsgBySelf("注册出现异常，请重新注册");
+    }
+
+    @Override
+    public JsonResult info(String token) {
+        String username= JWTUtil.getUsername(token);
+        User user=userMapper.getUserByUsername(username);
+        //设置密码为空保护隐私
+        user.setPassword("");
+        return ControllerUtil.getDataResult(user);
     }
 
 }

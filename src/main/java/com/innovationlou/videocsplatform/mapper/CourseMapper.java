@@ -22,4 +22,10 @@ public interface CourseMapper extends BaseMapper<Course> {
 
     @Select("select * from course where course_name like '%${key}%' OR course_desc like '%${key}%'")
     List<Course> selectLikeKey(@Param("key") String key);
+
+    @Select("SELECT * FROM course WHERE course_price != 0")
+    List<Course> selectPaidCourses();
+
+    @Select("SELECT * FROM course WHERE course_price = 0")
+    List<Course> selectFreeCourses();
 }

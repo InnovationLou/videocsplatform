@@ -51,6 +51,18 @@ public class CourseController extends BaseController{
         return courseService.getAllCourses();
     }
 
+    @ApiOperation("获取免费视频")
+    @GetMapping("/free")
+    public JsonResult getFreeCourses(){
+        return courseService.getFreeCourses();
+    }
+
+    @ApiOperation("获取付费视频")
+    @GetMapping("/paid")
+    public JsonResult getPaidCourses(){
+        return courseService.getPaidCourses();
+    }
+
     @ApiOperation("购买课程")
     @PostMapping("/buy")
     @RequiresAuthentication

@@ -22,6 +22,7 @@ import com.innovationlou.videocsplatform.vo.JsonResult;
 import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -70,6 +71,13 @@ public class UserController extends BaseController{
     public JsonResult register(@RequestParam("username") String username,@RequestParam("password")String password,
                                @RequestParam("email") String email){
         return userService.register(username,password,email);
+    }
+
+    @ApiOperation("获取个人信息")
+    @GetMapping("/{id}")
+    @RequiresAuthentication
+    public JsonResult info(@RequestHeader("Authorization") String token){
+        return userService.info(token);
     }
 
 }

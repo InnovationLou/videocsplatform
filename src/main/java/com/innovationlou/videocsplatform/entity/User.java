@@ -39,6 +39,9 @@ public class User implements Serializable {
     @ApiModelProperty(value = "余额")
     private Float money;
 
+    @ApiModelProperty(value = "头像")
+    private String icon;
+
     @ApiModelProperty(value = "上次登录ip")
     private String lastIp;
 

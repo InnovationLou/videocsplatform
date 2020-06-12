@@ -50,3 +50,12 @@ pwd=123
     - 添加apache license,添加开发环境和发布环境配置
 
     - 整合thymeleaf 使用AdminLTE前端模板搭建后台管理系统，完成静态资源映射，配置资源访问
+
+- 2020.6.12
+    - 修复前端反馈的业务层面bugs
+    ![前端反馈](https://img-blog.csdnimg.cn/20200612150312724.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3VkYWhjaQ==,size_16,color_FFFFFF,t_70)
+    
+    - 视频添加缩略图   未完成
+    - 用户添加头像
+        - 注册方法尚未随机设置头像，或许改为使用云图片服务器
+    - 免费视频可以直接获得播放地址，付费仍按原来的逻辑

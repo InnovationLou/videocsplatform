@@ -142,4 +142,14 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         result.put("videoInfo",videos);
         return ControllerUtil.getDataResult(result);
     }
+
+    @Override
+    public JsonResult getFreeCourses() {
+        return ControllerUtil.getDataResult(courseMapper.selectFreeCourses());
+    }
+
+    @Override
+    public JsonResult getPaidCourses() {
+        return ControllerUtil.getDataResult(courseMapper.selectPaidCourses());
+    }
 }
