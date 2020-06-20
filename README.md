@@ -5,6 +5,7 @@
 swagger地址:localhost:8222/swagger-ui.html
 
 druid监控地址:localhost:8222/druid/login
+前端项目地址:https://github.com/ssi992/software-engineering
 
 ```javascript
 //druid监控账户
